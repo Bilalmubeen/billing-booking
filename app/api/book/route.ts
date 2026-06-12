@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase'
 import { createCalendarEvent } from '@/lib/calendar'
 
+export const dynamic = 'force-dynamic'
+
 export async function POST(req: NextRequest) {
   try {
     const { username, name, email, phone, notes, startMs, endMs, typeLabel } = await req.json()
