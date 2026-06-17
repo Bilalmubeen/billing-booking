@@ -218,13 +218,12 @@ export default function BookingPage() {
         {/* Profile header */}
         <div className="px-8 pt-10 pb-8 border-b border-gray-100 text-center">
           {cfg.avatar
-            ? <img src={cfg.avatar} className="w-20 h-20 rounded-full mx-auto mb-4 ring-4 ring-gray-100" alt=""/>
-            : <div className="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold text-white ring-4 ring-gray-100"
-                style={{ background: '#6366f1' }}>
+            ? <img src={cfg.avatar} style={{ width:80, height:80, borderRadius:'50%', margin:'0 auto 16px', display:'block', border:'4px solid #f3f4f6' }} alt=""/>
+            : <div style={{ width:80, height:80, borderRadius:'50%', margin:'0 auto 16px', background:'#6366f1', display:'flex', alignItems:'center', justifyContent:'center', fontSize:24, fontWeight:700, color:'#fff' }}>
                 {cfg.name?.split(' ').map((n:string) => n[0]).join('').slice(0,2).toUpperCase()}
               </div>
           }
-          <h1 className="text-xl font-bold text-gray-900">{cfg.name}</h1>
+          <h1 style={{ fontSize:20, fontWeight:700, color:'#111' }}>{cfg.name}</h1>
         </div>
 
         {/* Meeting types */}
