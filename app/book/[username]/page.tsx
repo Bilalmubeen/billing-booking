@@ -214,37 +214,33 @@ export default function BookingPage() {
   // ── TYPES VIEW ───────────────────────────────────────────────────────────────
   if (view === 'types') return (
     <div className="min-h-screen bg-gray-50 flex items-start justify-center px-4 py-12">
-      <div className="w-full max-w-md">
-        {/* Profile */}
-        <div className="text-center mb-8">
+      <div className="w-full max-w-lg bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+        {/* Profile header */}
+        <div className="px-8 pt-10 pb-8 border-b border-gray-100 text-center">
           {cfg.avatar
-            ? <img src={cfg.avatar} className="w-20 h-20 rounded-full mx-auto mb-4 ring-4 ring-white shadow" alt=""/>
-            : <div className="w-20 h-20 rounded-full mx-auto mb-4 ring-4 ring-white shadow flex items-center justify-center text-2xl font-bold text-white"
-                style={{ background: accent }}>
-                {cfg.name?.charAt(0) || '?'}
+            ? <img src={cfg.avatar} className="w-20 h-20 rounded-full mx-auto mb-4 ring-4 ring-gray-100" alt=""/>
+            : <div className="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold text-white ring-4 ring-gray-100"
+                style={{ background: '#6366f1' }}>
+                {cfg.name?.split(' ').map((n:string) => n[0]).join('').slice(0,2).toUpperCase()}
               </div>
           }
           <h1 className="text-xl font-bold text-gray-900">{cfg.name}</h1>
-          <p className="text-sm text-gray-500 mt-1">Select a meeting type</p>
         </div>
 
-        {/* Event type cards */}
-        <div className="space-y-3">
+        {/* Meeting types */}
+        <div className="divide-y divide-gray-100">
           {cfg.appointmentTypes?.map((t: any) => (
             <button
               key={t.id}
               onClick={() => pickType(t)}
-              className="w-full text-left flex items-start gap-4 p-5 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all group"
-              style={{ borderLeftWidth: 4, borderLeftColor: t.color }}
+              className="w-full text-left flex items-center gap-4 px-8 py-5 hover:bg-gray-50 transition-colors group"
             >
+              <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ background: t.color }}/>
               <div className="flex-1 min-w-0">
                 <p className="font-semibold text-gray-900 text-sm">{t.label}</p>
-                <p className="text-sm text-gray-500 mt-0.5 flex items-center gap-1.5">
-                  <ClockIcon />
-                  {t.duration} min
-                </p>
+                <p className="text-sm text-gray-400 mt-0.5">{t.duration} min</p>
               </div>
-              <svg width="16" height="16" fill="none" stroke="#9ca3af" strokeWidth="2" viewBox="0 0 24 24" className="flex-shrink-0 mt-1 group-hover:stroke-gray-600 transition-colors">
+              <svg width="16" height="16" fill="none" stroke="#d1d5db" strokeWidth="2" viewBox="0 0 24 24" className="group-hover:stroke-gray-400 transition-colors flex-shrink-0">
                 <path d="M9 18l6-6-6-6"/>
               </svg>
             </button>
