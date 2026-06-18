@@ -319,69 +319,64 @@ export default function BookingPage() {
         md:w-[380px] md:flex-shrink-0 md:border-r md:overflow-y-auto
         ${(view === 'slots' || view === 'form') ? 'hidden md:flex' : 'flex'}
       `}>
-        <div className="flex-1 px-8 pt-8 pb-6">
+        <div className="flex-1 px-7 pt-7 pb-6">
 
-          {/* Back to all types */}
+          {/* Back */}
           <button
             onClick={() => { setView('types'); setSelectedType(null); setSelectedDate(null); setSelectedSlots([]) }}
-            className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-600 mb-7 transition-colors"
+            style={{ display:'flex', alignItems:'center', gap:6, fontSize:13, color:'#aaa', background:'none', border:'none', cursor:'pointer', marginBottom:28, padding:0, fontFamily:'inherit' }}
+            onMouseEnter={e => e.currentTarget.style.color='#555'}
+            onMouseLeave={e => e.currentTarget.style.color='#aaa'}
           >
             <ChevLeft />
             All event types
           </button>
 
-          {/* Host profile */}
+          {/* Avatar */}
           {cfg.avatar
-            ? <img src={cfg.avatar} className="w-12 h-12 rounded-full mb-3 ring-2 ring-gray-100" alt=""/>
-            : <div className="w-12 h-12 rounded-full mb-3 flex items-center justify-center text-lg font-bold text-white ring-2 ring-gray-100"
-                style={{ background: accent }}>
-                {cfg.name?.charAt(0) || '?'}
+            ? <img src={cfg.avatar} style={{ width:44, height:44, borderRadius:'50%', marginBottom:10, display:'block', objectFit:'cover', border:'2px solid #f0f0f4' }} alt=""/>
+            : <div style={{ width:44, height:44, borderRadius:'50%', marginBottom:10, background:'#6366f1', display:'flex', alignItems:'center', justifyContent:'center', fontSize:16, fontWeight:700, color:'#fff' }}>
+                {cfg.name?.charAt(0)}
               </div>
           }
-          <p style={{ fontSize:13, color:'#888', marginBottom:4 }}>{cfg.name}</p>
 
-          {/* Event type info (calendar/slots views) */}
-          {view !== 'form' && selectedType && (
-            <div className="mt-3 pb-6 border-b border-gray-100 mb-6">
-              <h2 style={{ fontSize:22, fontWeight:700, color:'#111', marginBottom:10, letterSpacing:'-0.3px' }}>{selectedType.label}</h2>
-              <div className="space-y-1.5 text-sm text-gray-500">
-                <div className="flex items-center gap-2">
-                  <ClockIcon />
-                  {selectedType.duration} min
-                </div>
-                <div className="flex items-center gap-2">
-                  <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path d="M15.05 5A5 5 0 0119 8.95M15.05 1A9 9 0 0123 8.94M8 12.5s1-1 3-1 3.5 1 5 1 3-1 3-1"/>
-                    <rect x="1" y="9" width="14" height="14" rx="2"/>
-                  </svg>
-                  Video · Google Meet
-                </div>
+          {/* Name */}
+          <p style={{ fontSize:13, color:'#999', marginBottom:6, fontWeight:500 }}>{cfg.name}</p>
+
+          {/* Event name */}
+          {selectedType && (
+            <h2 style={{ fontSize:20, fontWeight:700, color:'#111', marginBottom:14, letterSpacing:'-0.3px', lineHeight:1.3 }}>{selectedType.label}</h2>
+          )}
+
+          {/* Meta */}
+          {selectedType && view !== 'form' && (
+            <div style={{ display:'flex', flexDirection:'column', gap:8, marginBottom:28 }}>
+              <div style={{ display:'flex', alignItems:'center', gap:8, fontSize:13, color:'#666' }}>
+                <ClockIcon />{selectedType.duration} min
+              </div>
+              <div style={{ display:'flex', alignItems:'center', gap:8, fontSize:13, color:'#666' }}>
+                <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                Video · Google Meet
               </div>
             </div>
           )}
 
-          {/* Booking summary (form view — desktop left panel) */}
+          {/* Booking summary (form view) */}
           {view === 'form' && selectedType && (
-            <div className="mt-3 pb-6 border-b border-gray-100 mb-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-3">{selectedType.label}</h2>
-              <div className="space-y-2 text-sm">
-                <div className="flex items-center gap-2 text-gray-600">
-                  <ClockIcon />
-                  {selectedType.duration} min
-                </div>
-                {selectedDate && (
-                  <div className="flex items-center gap-2 text-gray-600">
-                    <CalIcon />
-                    {fmtLong(selectedDate)}
-                  </div>
-                )}
-                {selectedSlots[0] && (
-                  <div className="flex items-center gap-2 font-semibold" style={{ color: accent }}>
-                    <ClockIcon />
-                    {fmtTime(selectedSlots[0])} – {fmtTime(getEndMs())}
-                  </div>
-                )}
+            <div style={{ display:'flex', flexDirection:'column', gap:8, marginBottom:28 }}>
+              <div style={{ display:'flex', alignItems:'center', gap:8, fontSize:13, color:'#666' }}>
+                <ClockIcon />{selectedType.duration} min
               </div>
+              {selectedDate && (
+                <div style={{ display:'flex', alignItems:'center', gap:8, fontSize:13, color:'#666' }}>
+                  <CalIcon />{fmtLong(selectedDate)}
+                </div>
+              )}
+              {selectedSlots[0] && (
+                <div style={{ display:'flex', alignItems:'center', gap:8, fontSize:13, fontWeight:600, color: accent }}>
+                  <ClockIcon />{fmtTime(selectedSlots[0])} – {fmtTime(getEndMs())}
+                </div>
+              )}
             </div>
           )}
 
