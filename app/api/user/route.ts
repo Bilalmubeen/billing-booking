@@ -34,14 +34,25 @@ export async function PATCH(req: NextRequest) {
   // Update availability
   if (body.availability) {
     await supabaseAdmin.from('availability').delete().eq('user_id', user.id)
-    const rows = body.availability.map((a: any) => ({ ...a, user_id: user.id }))
+    const rows = body.availability.map((a: any) => ({
+      user_id: user.id,
+      day: a.day,
+      active: a.active,
+      start_time: a.start_time,
+      end_time: a.end_time,
+    }))
     if (rows.length > 0) await supabaseAdmin.from('availability').insert(rows)
   }
 
   // Update appointment types
   if (body.appointmentTypes) {
     await supabaseAdmin.from('appointment_types').delete().eq('user_id', user.id)
-    const rows = body.appointmentTypes.map((t: any) => ({ ...t, user_id: user.id }))
+    const rows = body.appointmentTypes.map((t: any) => ({
+      user_id: user.id,
+      label: t.label,
+      duration: t.duration,
+      color: t.color,
+    }))
     if (rows.length > 0) await supabaseAdmin.from('appointment_types').insert(rows)
   }
 
