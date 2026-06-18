@@ -213,38 +213,48 @@ export default function BookingPage() {
 
   // ── TYPES VIEW ───────────────────────────────────────────────────────────────
   if (view === 'types') return (
-    <div className="min-h-screen bg-gray-50 flex items-start justify-center px-4 py-12">
-      <div className="w-full max-w-lg bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+    <div className="min-h-screen bg-gray-50 flex items-start justify-center px-4 py-16">
+      <div className="w-full max-w-md bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
         {/* Profile header */}
-        <div className="px-8 pt-10 pb-8 border-b border-gray-100 text-center">
+        <div className="pt-10 pb-7 px-8 text-center border-b border-gray-100">
           {cfg.avatar
-            ? <img src={cfg.avatar} style={{ width:80, height:80, borderRadius:'50%', margin:'0 auto 16px', display:'block', border:'4px solid #f3f4f6' }} alt=""/>
-            : <div style={{ width:80, height:80, borderRadius:'50%', margin:'0 auto 16px', background:'#6366f1', display:'flex', alignItems:'center', justifyContent:'center', fontSize:24, fontWeight:700, color:'#fff' }}>
+            ? <img src={cfg.avatar} style={{ width:88, height:88, borderRadius:'50%', margin:'0 auto 14px', display:'block', objectFit:'cover' }} alt=""/>
+            : <div style={{ width:88, height:88, borderRadius:'50%', margin:'0 auto 14px', background:'#6366f1', display:'flex', alignItems:'center', justifyContent:'center', fontSize:26, fontWeight:700, color:'#fff' }}>
                 {cfg.name?.split(' ').map((n:string) => n[0]).join('').slice(0,2).toUpperCase()}
               </div>
           }
-          <h1 style={{ fontSize:20, fontWeight:700, color:'#111' }}>{cfg.name}</h1>
+          <h1 style={{ fontSize:18, fontWeight:700, color:'#111', marginBottom:2 }}>{cfg.name}</h1>
+          <p style={{ fontSize:13, color:'#999' }}>Select a meeting type</p>
         </div>
 
         {/* Meeting types */}
-        <div className="divide-y divide-gray-100">
-          {cfg.appointmentTypes?.map((t: any) => (
-            <button
-              key={t.id}
-              onClick={() => pickType(t)}
-              className="w-full text-left flex items-center gap-4 px-8 py-5 hover:bg-gray-50 transition-colors group"
-            >
-              <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ background: t.color }}/>
-              <div className="flex-1 min-w-0">
-                <p className="font-semibold text-gray-900 text-sm">{t.label}</p>
-                <p className="text-sm text-gray-400 mt-0.5">{t.duration} min</p>
-              </div>
-              <svg width="16" height="16" fill="none" stroke="#d1d5db" strokeWidth="2" viewBox="0 0 24 24" className="group-hover:stroke-gray-400 transition-colors flex-shrink-0">
-                <path d="M9 18l6-6-6-6"/>
-              </svg>
-            </button>
-          ))}
-        </div>
+        {cfg.appointmentTypes?.map((t: any, i: number) => (
+          <button
+            key={t.id}
+            onClick={() => pickType(t)}
+            style={{
+              width:'100%',
+              display:'flex',
+              alignItems:'center',
+              gap:14,
+              padding:'18px 24px',
+              background:'none',
+              border:'none',
+              borderBottom: i < cfg.appointmentTypes.length - 1 ? '1px solid #f3f4f6' : 'none',
+              cursor:'pointer',
+              textAlign:'left',
+            }}
+            onMouseEnter={e => e.currentTarget.style.background='#fafafa'}
+            onMouseLeave={e => e.currentTarget.style.background='none'}
+          >
+            <div style={{ width:10, height:10, borderRadius:'50%', background:t.color, flexShrink:0 }}/>
+            <div style={{ flex:1 }}>
+              <p style={{ fontSize:14, fontWeight:600, color:'#111', marginBottom:2 }}>{t.label}</p>
+              <p style={{ fontSize:13, color:'#aaa' }}>{t.duration} min</p>
+            </div>
+            <svg width="15" height="15" fill="none" stroke="#ccc" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        ))}
       </div>
     </div>
   )
