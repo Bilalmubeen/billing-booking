@@ -338,12 +338,12 @@ export default function BookingPage() {
                 {cfg.name?.charAt(0) || '?'}
               </div>
           }
-          <p className="text-sm font-medium text-gray-500">{cfg.name}</p>
+          <p style={{ fontSize:13, color:'#888', marginBottom:4 }}>{cfg.name}</p>
 
           {/* Event type info (calendar/slots views) */}
           {view !== 'form' && selectedType && (
             <div className="mt-3 pb-6 border-b border-gray-100 mb-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-2">{selectedType.label}</h2>
+              <h2 style={{ fontSize:22, fontWeight:700, color:'#111', marginBottom:10, letterSpacing:'-0.3px' }}>{selectedType.label}</h2>
               <div className="space-y-1.5 text-sm text-gray-500">
                 <div className="flex items-center gap-2">
                   <ClockIcon />
@@ -463,14 +463,15 @@ export default function BookingPage() {
                 </div>
               )}
               {!slotsLoading && slots.length > 0 && (
-                <div className="space-y-2">
+                <div style={{ display:'flex', flexDirection:'column', gap:10 }}>
                   {slots.map(slot => {
                     const isActive = selectedSlots.includes(slot)
                     return (
                       <button
                         key={slot}
                         onClick={() => pickSlot(slot)}
-                        className={`w-full py-3 rounded-lg border text-sm font-semibold transition-all ${
+                        style={{ padding:'14px', fontSize:14 }}
+                        className={`w-full rounded-lg border text-sm font-semibold transition-all ${
                           isActive
                             ? 'bg-blue-700 border-blue-700 text-white shadow-sm'
                             : 'bg-white border-blue-200 text-blue-700 hover:bg-blue-700 hover:border-blue-700 hover:text-white'
@@ -485,7 +486,7 @@ export default function BookingPage() {
             </div>
 
             {/* Confirm CTA */}
-            <div className="px-6 py-5 border-t border-gray-100 flex-shrink-0">
+            <div style={{ padding:'20px 24px', borderTop:'1px solid #f1f1f4', flexShrink:0 }}>
               <button
                 disabled={!canConfirm}
                 onClick={() => setView('form')}
