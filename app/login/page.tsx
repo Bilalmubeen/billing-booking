@@ -3,23 +3,25 @@ import { signIn } from 'next-auth/react'
 
 export default function Login() {
   return (
-    <main className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-10 max-w-sm w-full text-center">
+    <main style={{ minHeight:'100vh', background:'#f5f5f7', display:'flex', alignItems:'center', justifyContent:'center', padding:'24px' }}>
+      <div style={{ width:'100%', maxWidth:420, background:'#fff', borderRadius:20, border:'1px solid #e8e8ec', boxShadow:'0 2px 12px rgba(0,0,0,0.06)', padding:'40px 36px', textAlign:'center' }}>
 
-        <div className="w-12 h-12 bg-blue-700 rounded-xl flex items-center justify-center mx-auto mb-6">
-          <svg width="22" height="22" fill="none" stroke="white" strokeWidth="2.5" viewBox="0 0 24 24">
+        <div style={{ width:52, height:52, background:'#6366f1', borderRadius:14, display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 24px' }}>
+          <svg width="24" height="24" fill="none" stroke="#fff" strokeWidth="2" viewBox="0 0 24 24">
             <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
           </svg>
         </div>
 
-        <h1 className="text-xl font-bold text-gray-900 mb-2">Welcome to Booking</h1>
-        <p className="text-sm text-gray-500 mb-8">Sign in to set up your scheduling page.</p>
+        <h1 style={{ fontSize:22, fontWeight:700, color:'#111', marginBottom:8, letterSpacing:'-0.3px' }}>Welcome to Booking</h1>
+        <p style={{ fontSize:14, color:'#888', marginBottom:32, lineHeight:1.6 }}>Sign in to set up your scheduling page.</p>
 
         <button
           onClick={() => signIn('google', { callbackUrl: '/dashboard' })}
-          className="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 rounded-xl px-5 py-3 text-gray-700 font-semibold shadow-sm hover:shadow-md hover:border-gray-400 transition-all text-sm"
+          style={{ width:'100%', display:'flex', alignItems:'center', justifyContent:'center', gap:10, padding:'12px 20px', background:'#fff', border:'1.5px solid #e5e7eb', borderRadius:12, fontSize:14, fontWeight:600, color:'#333', cursor:'pointer', fontFamily:'inherit', transition:'all 0.15s', boxShadow:'0 1px 3px rgba(0,0,0,0.06)' }}
+          onMouseEnter={e => { e.currentTarget.style.borderColor='#6366f1'; e.currentTarget.style.boxShadow='0 2px 8px rgba(99,102,241,0.15)' }}
+          onMouseLeave={e => { e.currentTarget.style.borderColor='#e5e7eb'; e.currentTarget.style.boxShadow='0 1px 3px rgba(0,0,0,0.06)' }}
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" className="flex-shrink-0">
+          <svg width="18" height="18" viewBox="0 0 24 24">
             <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
             <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
             <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
@@ -28,7 +30,7 @@ export default function Login() {
           Continue with Google
         </button>
 
-        <p className="mt-6 text-xs text-gray-400 leading-relaxed">
+        <p style={{ fontSize:12, color:'#bbb', marginTop:20, lineHeight:1.6 }}>
           By continuing, you connect your Google Calendar to create your personalized booking page.
         </p>
       </div>
