@@ -14,8 +14,8 @@ export default async function Home() {
             <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
           </svg>
         </div>
-        <h1 style={{ fontSize: '36px', fontWeight: '700', color: '#0f172a', marginBottom: '12px', letterSpacing: '-0.5px' }}>
-          Your scheduling page,<br/>powered by Google Calendar.
+        <h1 style={{ fontSize:34, fontWeight:700, color:'#0f172a', marginBottom:12, letterSpacing:'-0.5px' }}>
+          SimpliBill Booking
         </h1>
         <p style={{ color: '#64748b', fontSize: '17px', marginBottom: '40px', lineHeight: '1.6' }}>
           Share one link. Let anyone book time with you — automatically synced to your calendar.
